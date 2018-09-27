@@ -1,0 +1,88 @@
+swagger: "2.0"
+info:
+  description: "fake server of fakeOrbit"
+  version: "1.0.0"
+  title: "apiFakeOrbit"
+host: "localhost:3001"
+basePath: "/api"
+schemes:
+  # tip: remove http to make production-grade
+  - http
+paths:
+  /users: 
+    get:
+      tags:
+        - users
+      summary: Obtiene el listado de usuarios
+      description: ''
+      responses:
+        200:
+          description: Listado de datos de usuario
+          schema:
+            $ref: '#/definitions/users'
+        422:
+          description: Ha ocurrido un error durante el proceso
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+  /blog:
+    get:
+      tags:
+        - blog
+      summary: Obtiene el listado de entradas del blog
+      description: ''
+      responses:
+        200:
+          description: Listado de datos de post
+          schema:
+            $ref: '#/definitions/blog'
+        422:
+          description: Ha ocurrido un error durante el proceso
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+        
+  /swagger:
+    x-swagger-pipe: swagger_raw
+# complex objects have schema definitions
+definitions:
+  ErrorResponse:
+    required:
+      - message
+    properties:
+      message:
+        type: string
+  users:
+    type: array
+    items: 
+      $ref: "#/definitions/user"
+  user:
+    type: object
+    properties:
+      id:
+        type: string
+      name:
+        type: string
+      lastname1:
+        type: string
+      lastname2:
+        type: string
+      birthdate:
+        type: string
+      picture:
+        type: string
+  blog:
+    type: array
+    items:
+      $ref: "#definitions/post"
+  post:
+    type: object
+    properties:
+      id:
+        type: string
+      id_user: 
+        type: string
+      title: 
+        type: string
+      description: 
+        type: string
+      text:
+        type: string
