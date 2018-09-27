@@ -1,88 +1,94 @@
 swagger: "2.0"
 info:
-  description: "fake server of fakeOrbit"
-  version: "1.0.0"
-  title: "apiFakeOrbit"
-host: "localhost:3001"
-basePath: "/api"
+  version: "0.0.1"
+  title: fakeOrbit
+
+host: localhost:3001
+
+basePath: /
+
 schemes:
-  # tip: remove http to make production-grade
   - http
+  - https
+
+consumes:
+  - application/json
+produces:
+  - application/json
 paths:
-  /users: 
+  /users:
+    x-swagger-router-controller: users
     get:
-      tags:
-        - users
-      summary: Obtiene el listado de usuarios
+      operationId: getAllUsers
       description: ''
       responses:
-        200:
-          description: Listado de datos de usuario
+        "200":
+          description: Success
           schema:
-            $ref: '#/definitions/users'
-        422:
-          description: Ha ocurrido un error durante el proceso
+            $ref: "#/definitions/GetUsers"
+        default:
+          description: Error
           schema:
-            $ref: '#/definitions/ErrorResponse'
+            $ref: "#/definitions/ErrorResponse"
   /blog:
+    x-swagger-router-controller: blog
     get:
-      tags:
-        - blog
-      summary: Obtiene el listado de entradas del blog
+      operationId: getAllPost
       description: ''
       responses:
-        200:
-          description: Listado de datos de post
+        "200":
+          description: Success
           schema:
-            $ref: '#/definitions/blog'
-        422:
-          description: Ha ocurrido un error durante el proceso
+            $ref: "#/definitions/GetBlog"
+        default:
+          description: Error
           schema:
-            $ref: '#/definitions/ErrorResponse'
-        
+            $ref: "#/definitions/ErrorResponse"
+  
   /swagger:
     x-swagger-pipe: swagger_raw
-# complex objects have schema definitions
+
 definitions:
+
+  GetUsers:
+    properties:
+      users:
+        type: array
+        items: 
+          type: object
+          properties:
+            id:
+              type: string
+            name:
+              type: string
+            lastname1:
+              type: string
+            lastname2:
+              type: string
+            birthdate:
+              type: string
+            picture:
+              type: string
+  GetBlog:
+    properties:
+      blog:
+        type: array
+        items: 
+          type: object
+          properties:
+            id:
+              type: string
+            id_user:
+              type: string
+            title:
+              type: string
+            description:
+              type: string
+            text:
+              type: string
   ErrorResponse:
     required:
       - message
     properties:
       message:
-        type: string
-  users:
-    type: array
-    items: 
-      $ref: "#/definitions/user"
-  user:
-    type: object
-    properties:
-      id:
-        type: string
-      name:
-        type: string
-      lastname1:
-        type: string
-      lastname2:
-        type: string
-      birthdate:
-        type: string
-      picture:
-        type: string
-  blog:
-    type: array
-    items:
-      $ref: "#definitions/post"
-  post:
-    type: object
-    properties:
-      id:
-        type: string
-      id_user: 
-        type: string
-      title: 
-        type: string
-      description: 
-        type: string
-      text:
         type: string
