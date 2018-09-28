@@ -1,0 +1,37 @@
+{
+  "name": "apifakeorbit",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "nodemon --watch src ./src/bin/www.ts",
+    "serve": "ts-node ./src/bin/www.ts",
+    "serve-swagger-debug": "DEBUG=swagger-tools:middleware:* ts-node ./src/bin/www.ts"
+  },
+  "dependencies": {
+    "debug": "~2.6.9",
+    "http-errors": "~1.6.2",
+    "pug": "2.0.0-beta11",
+    "body-parser": "~1.18.2",
+    "chalk": "^2.3.1",
+    "cookie-parser": "~1.4.3",
+    "cors": "^2.8.4",
+    "express": "~4.16.3",
+    "js-yaml": "^3.11.0",
+    "morgan": "~1.9.0",
+    "swagger-tools": "^0.10.3"
+  },
+  "devDependencies": {
+    "@types/body-parser": "^1.16.8",
+    "@types/chalk": "^2.2.0",
+    "@types/cookie-parser": "^1.4.1",
+    "@types/cors": "^2.8.3",
+    "@types/express": "^4.11.1",
+    "@types/js-yaml": "^3.11.2",
+    "@types/morgan": "^1.7.35",
+    "@types/node": "^9.4.6",
+    "@types/swagger-tools": "^0.10.6",
+    "nodemon": "^1.17.1",
+    "ts-node": "^7.0.0",
+    "typescript": "^2.9.2"
+  }
+}
