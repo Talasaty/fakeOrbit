@@ -4,8 +4,9 @@ import styled from 'styled-components'
 const CardContainer = styled.div`
     background-color: #90ECC1;
     border-radius: 14px;
-    min-height: 100px;
-    max-width: 250px;
+    height: 150px;
+    width: 250px;
+    margin: 10px 5px 10px 5px;
 `
 
 class CardRaw extends React.Component{
